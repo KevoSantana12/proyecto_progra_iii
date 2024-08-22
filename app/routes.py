@@ -52,7 +52,7 @@ def contactenos():
 def submit_user():
     confirmContrasena = business_logic_user.confirmar_contrasena(request.form.get('contrasena'),request.form.get('confirmPassword'))
     contrasenaValida = business_logic_user.verificar_caracteres(request.form.get('contrasena'))
-
+    correo = EnvioCorreo()
     inicio = False
     if confirmContrasena:
 
@@ -65,6 +65,7 @@ def submit_user():
             user.contrasena = request.form.get('confirmPassword')
             try:
                 business_logic_user.crear_user(user=user)
+                correo.correoBienvenida(user.email, user.nombre)
                 return render_template('usuariocreado.html', inicio = inicio, date = date)
             except:
                 return render_template('errorusuario.html', inicio = inicio, date = date)
@@ -82,7 +83,12 @@ def submit_login():
         session['id'] = userLog.id
         return redirect(url_for('mypage'))
     else:
-        return render_template('inicioFallido.html')    
+        return render_template('inicioFallido.html')
+    
+@app.route('/forget')
+def password_forgeted():
+    inicio = False
+    return render_template('contrasena.html', inicio = inicio, date = date)
     
 #---------------------------------------------------------------------------
 # Paginas esclusivas de usuarios logeados
@@ -93,10 +99,11 @@ def mypage():
     if 'id' not in session:
         return redirect(url_for('login'))
     userLog = business_logic_user.get_user(session['id'])
+    empleados = business_logic_empleado.get_empleados_por_user_id(session['id'])
     sumaSalarioEmpleados = business_logic_empleado.sumaSalarios(session['id'])
     cantidadEmpleados = business_logic_empleado.cantidad_empleados(session['id'])
     totalDolares = float(sumaSalarioEmpleados) / float(business_logic_cambio.cambio_venta(fecha=date))
-    return render_template('mypage.html', userLog=userLog, sumaSalarioEmpleados=sumaSalarioEmpleados, cantidadEmpleados=cantidadEmpleados, totalDolares = totalDolares)
+    return render_template('mypage.html', userLog=userLog, empleados = empleados ,sumaSalarioEmpleados=sumaSalarioEmpleados, cantidadEmpleados=cantidadEmpleados, totalDolares = totalDolares)
 
 @app.route('/myprofile', methods=['POST','GET'])
 def myprofile():

@@ -25,4 +25,3 @@ COPY . .
 
 # Ejecutamos uWSGI con el archivo de configuración app.ini
 CMD ["gunicorn", "wsgi:app", "-b", "0.0.0.0:8000"]
-

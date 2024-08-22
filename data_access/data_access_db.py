@@ -3,10 +3,10 @@ from entities.entities import User
 from entities.entities import Empleado
 
 def obtener_conexion():
-    return pymysql.connect(host='blgehusyvi8r2qj3ejwp-mysql.services.clever-cloud.com',
-                                user='uam910yvetvhkhyx',
-                                password='YT3RMmOSlbFEte1XVpmE',
-                                db='blgehusyvi8r2qj3ejwp')
+    return pymysql.connect(host='',
+                                user='',
+                                password='',
+                                db='')
 
 #Conexio tabla user o empleador
 class userCRUD:

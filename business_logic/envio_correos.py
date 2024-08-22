@@ -7,11 +7,10 @@ load_dotenv()
 
 class EnvioCorreo:
     def __init__(self):
-        self.password = "hzmj jmxf whxw gjjc"
-    
-    def envioCorreo(self, email_reciver=None, empleado=None, rebajos=None):
-        email_sender = 'planillaplushelp@gmail.com'
-        
+        self.password = ""
+        self.email_sender = ''
+
+    def envioCorreo(self, email_reciver=None, empleado=None, rebajos=None):        
         subject = f'Reporte Salario de {empleado}'
         body = f'Abajo encontrarás el reporte de salario de {empleado}.'
         
@@ -77,7 +76,7 @@ class EnvioCorreo:
         """
         
         em = EmailMessage()
-        em['From'] = email_sender
+        em['From'] = self.email_sender
         em['To'] = email_reciver
         em['Subject'] = subject
         em.set_content(body)
@@ -85,5 +84,21 @@ class EnvioCorreo:
 
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
-            smtp.login(email_sender, self.password)
+            smtp.login(self.email_sender, self.password)
             smtp.send_message(em)
+
+
+    def correoBienvenida(self, email_reciver=None, nombre_usuario=None):        
+        subject = f'Usuario Creado exitosamente!'
+        body = f'Bienvenido a Planilla Plus, {nombre_usuario}! Nos complace darte la bienvenida a ,Planilla Plus, la mejor gestora de planillas de Costa Rica. Estamos aquí para simplificar y optimizar la gestión de tu nómina, ofreciéndote las herramientas más avanzadas para manejar todos los aspectos de tu planilla de manera eficiente y segura. ¡Gracias por confiar en nosotros!'   
+        em = EmailMessage()
+        em['From'] = self.email_sender
+        em['To'] = email_reciver
+        em['Subject'] = subject
+        em.set_content(body)
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
+            smtp.login(self.email_sender, self.password)
+            smtp.send_message(em)
+
