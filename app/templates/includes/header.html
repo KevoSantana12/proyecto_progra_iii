@@ -1,0 +1,45 @@
+<!-- agregar inicio -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanillaPlus</title>
+    <link rel="icon" type="image/svg+xml" href="../../static/images/logo-negro.svg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+    <header class="header {% if inicio %}inicio{% endif %}">
+        <div class="contenedor contenido-header">
+            <div class="barra">
+                <a href="/">
+                    <img src="../../static//images/logo.svg" alt="">
+                </a>
+
+                <div class="mobile-menu">
+                    <img src="../../static/images/barras.svg" alt="icono menu responsive">
+                </div>
+
+                <div class="derecha">
+
+                    <nav class="navegacion">
+                        <a href="/nosotros">Nosotros</a>
+                        <a href="/contactenos">Contactenos</a>
+                        <a href="/registrese" class="boton-verde-sm">Registrese</a>
+                        <a href="/inicio" class="boton-verde-sm">Inicio Session</a>
+                    </nav>
+                </div>             
+            </div>
+
+        {% if inicio %}
+            <div class="heroe">
+                <h1>PlanillaPlus</h1>
+                <h2>Calculo de Nomina y Gestor de Planillas</h2>
+            </div>
+
+        {% endif %}
+        </div>
+    </header>

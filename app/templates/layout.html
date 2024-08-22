@@ -1,0 +1,36 @@
+{% include './includes/dashboard_templates/header_dashboard.html' %}
+
+<body id="page-top">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        {% include './includes/dashboard_templates/sidebar.html' %}
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <!-- Topbar -->
+                {% include './includes/dashboard_templates/top_navbar.html' %}
+                <div class="container-fluid">
+                    {% block content %} {% endblock %}
+                </div>
+            </div>
+            {% include './includes/dashboard_templates/footer_dashboard.html' %}
+        </div>
+
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    {% include './includes/dashboard_templates/logout_modal.html' %}
+    {% include './includes/dashboard_templates/delete_modal.html' %}
+
+    <script src="../static/js/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../static/js/sb-admin-2.min.js"></script>
+    <script src="../static/js/vendor/chart.js/Chart.min.js"></script>
+    <script src="../static/js/demo/chart-area-demo.js"></script>
+    <script src="../static/js/demo/chart-pie-demo.js"></script>
+</body>

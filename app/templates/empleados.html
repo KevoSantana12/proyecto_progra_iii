@@ -1,0 +1,71 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+
+            <div class="row">
+
+                <div class="col">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-green-900 mb-4">Empleados</h1>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Posicion</th>
+                                        <th>Nombre</th>
+                                        <th>Correo</th>
+                                        <th>Salario</th>
+                                        <th>Ver cargas sociales</th>
+                                        <th>Gestion</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Posicion</th>
+                                        <th>Nombre</th>
+                                        <th>Correo</th>
+                                        <th>Salario</th>
+                                        <th>Ver cargar sociales</th>
+                                        <th>Gestion</th> 
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {% for empleado in empleados %}
+                                    <tr>
+                                        <td>{{ empleado.posicion }}</td>
+                                        <td>{{ empleado.nombre }} {{ empleado.apellido }}</td>
+                                        <td>{{ empleado.email }}</td>
+                                        <td>${{ empleado.salarioBruto | round(2) }}</td>
+                                        <th><a href="{{ url_for('info_empleado', userlog = userlog, id=empleado.id) }}">Ver info</a></th>
+                                        <th> 
+                                            <div>
+                                                <form action="{{ url_for('editar_empleado', userlog = userlog, id=empleado.id) }}"><button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Editar</button></form>
+                                                <form action="{{ url_for('eliminar_empleado', userlog = userlog, id=empleado.id) }}" method="post"><button class="d-none d-sm-inline-block btn btn-sm btn-orange shadow-sm">Borrar</button></form>   
+                                            </div> 
+                                        </th>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="/agregarempleados">Agregar empleados</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="/mypage">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

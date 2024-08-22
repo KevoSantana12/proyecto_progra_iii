@@ -1,0 +1,91 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+
+            <div class="row">
+
+                <div class="col">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h2 text-black-900 mb-4">{{ empleado.nombre }} {{ empleado.apellido }} </h1>
+                            <h1 class="h4 text-gray-500 mb-4">{{ empleado.posicion }} </h1>
+                            <div class="table-responsive">
+                                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Concepto</th>
+                                            <th>Monto</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Concepto</th>
+                                            <th>Monto</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>Salario bruto</td>
+                                            <td>{{ empleado.salarioBruto }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Salario neto</td>
+                                            <td>{{ salario_neto | round(2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Impuesto renta</td>
+                                            <td>{{ impuesto_renta | round(2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ivm</td>
+                                            <td>{{ ivm | round(2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sem</td>
+                                            <td>{{ sem | round(2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lpt</td>
+                                            <td>{{ lpt | round(2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total impuestos</td>
+                                            <td>{{ total_impuestos | round(2) }}</td>
+                                        </tr>
+                                        <hr class="border-light m-0">
+                                        <tr>
+                                            <td><h6>Aporte patronal</h6></td>
+                                            <td>{{ aporte_patronal | round(2) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                           </div> 
+                        <div class="text-center">
+                            <form action="/info/{{empleado.id}}" method="post"><button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Enviar comprobante de pago por correo</button></form>
+                            <form action="/descargar_informacion/{{empleado.id}}" ><button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-orange shadow-sm">Descargar pdf con la informacion</button></form>
+                            <a class="small" href="/empleados">Ver Empleados</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="/agregarempleados">Agregar mas</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="/mypage">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+

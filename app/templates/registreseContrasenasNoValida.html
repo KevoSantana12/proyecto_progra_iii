@@ -1,0 +1,24 @@
+{% include './includes/header.html' %}
+<main class="contenedor seccion iniciar">
+
+    <div class="registro">
+        <div class="registro_container">
+            <h1>Cree su cuenta con nosotros</h1>
+            <h5 class="h2_error">Las contraseña no cumple con el requirimientos minimos</h5>
+            <form action="/submit" method="post" class="formulario_inicio">
+                <input type="text" placeholder="Nombre" id="nombre" name="nombre" required>
+                <input type="text" placeholder="Apellidos" id="apellido" name="apellido" required>
+                <input type="email" placeholder="E-mail" id="email" name="email" required>
+                <input type="telefono" placeholder="Telefono" id="telefono" name="telefono" required>
+                <input type="compañia" placeholder="Compañia" id="compania" name="compania" required>
+                <input type="password" placeholder="Contraseña" id="contrasena" name="contrasena">
+                <input type="password" placeholder="Confirme tu contraseña" id="confirmPassword" name="confirmPassword" required>
+                <small id="passwordHelp" class="password-help">La contraseña tiene que tener más de 8 caracteres, un número, una mayúscula y un carácter especial.</small>
+                <input type="submit" value="Cree su cuenta" class="boton-amarillo">
+            </form>
+        </div>
+        <a href="/inicio" class="contrasena_olvidada">¿Ya tienes una cuenta?</a>
+    </div>
+</main>
+
+{% include './includes/footer.html' %}

@@ -1,0 +1,65 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+
+            <div class="row">
+                <div class="col-lg-5 bg-register-image">
+                    <img src="https://images.pexels.com/photos/5699475/pexels-photo-5699475.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="img-fluid">
+                </div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Editar los datos del empleado</h1>
+                        </div>
+                        <form class="user" action="{{ url_for('editar_empleado', userlog = userlog, id=empleado.id) }}" method="post">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user" id="exampleFirstName" name="nombre"
+                                        placeholder=" {{ empleado.nombre }}" value="{{ empleado.nombre }}">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName" name="apellido"
+                                        placeholder="{{ empleado.apellido }}" value="{{ empleado.apellido }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
+                                    placeholder="{{ empleado.email }}" value="{{ empleado.email }}">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user"
+                                        id="telefono" name="telefono" placeholder="{{ empleado.telefono }}" value="{{ empleado.telefono }}">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control form-control-user" id="salaryInput" name="salario" placeholder="{{ empleado.salarioBruto }}" value="{{ empleado.salarioBruto }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="posicion" name="posicion"
+                                    placeholder="{{ empleado.posicion }}" value="{{ empleado.posicion }}">
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-user btn-block" value="Editar"> </input>
+                            <hr>
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="/empleados">Ver Empleados</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="/mypage">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+
